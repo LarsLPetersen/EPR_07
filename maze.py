@@ -102,7 +102,7 @@ def create_graph(maze, node_list):
     return graph
 
             
-def display(maze, start, path, goal):
+def display(maze, start, goal, path):
     """
     draw the labyrinth, current position, goal and the shortest path
     """
@@ -115,12 +115,17 @@ def display(maze, start, path, goal):
             if maze[y,x] == 0:
                 ax.add_patch(Rectangle((x-.5,y-.5), 1., 1., alpha=1))
 
-    #displays the start of the path with a green circle
-    ax.add_patch(Circle((start[0], start[2]), .3,color='green', alpha=1))
+    #displays the start of the path with a yellow circle
+    ax.add_patch(Circle((start[0], start[2]), .3,color='yellow', alpha=1))
 
-    # displays evry step of the path with a yellow circle
-    for node in path[1:-1]:
-        ax.add_patch(Circle((node[0], node[2]), .3,color='yellow', alpha=1))
+    # displays evry step of the path with a green circle
+    # only if the path exists
+
+    if path:        
+        for node in path[1:-1]:
+            ax.add_patch(Circle((node[0], node[2]),
+                                .3,color='green', alpha=1))
+    else: pass
         
     # displays the goal of the path with a red circle
     ax.add_patch(Circle((goal[0], goal[2]), .3, color='red', alpha=1))
@@ -186,15 +191,19 @@ def main():
     """Runs the program"""
 
     #### Aufgabe 6.2 a) Graph-Repräsentation
-    
-    # Create the valid nodes' list    
-    node_list = create_node_list(maze)
 
-    # Create and print the graph of the nodes for this maze
-    graph = create_graph(maze, node_list)
-    
-    print("The graph representation for this maze is: \n")
-    pprint.pprint(graph)
+    try:
+        # Create the valid nodes' list    
+        node_list = create_node_list(maze)
+
+        # Create and print the graph of the nodes for this maze
+        graph = create_graph(maze, node_list)
+        
+        print("\nThe graph representation for this maze is:")
+        pprint.pprint(graph)
+
+    except Exception:
+        print("No valid maze was given!")
 
 
 
@@ -202,7 +211,7 @@ def main():
     path =[]
     
     # Set start and end nodes                             
-    start = "6:5"
+    start = "1:1"
     goal = "7:7"
 
     # Search for existing paths (no loops), given the allowed movement
@@ -212,7 +221,7 @@ def main():
         
         # output if a path can be followed
         if path:
-            print("\nOne or more paths exist from {} to {}.".
+            print("\nAt least one path exist from {} to {}.".
                   format(start, goal))
         else:
             print("\nFor this maze there is no path from {} to {}.".
@@ -270,10 +279,11 @@ def main():
             # if there are more, choose one randomly for display
             
             shortest = random.choice(shortest_path)
-            display(maze, start, shortest, goal)
+            display(maze, start, goal, shortest)
 
         else:
-            print("No display is possible")
+            display(maze, start, goal, [])
+
 
     except Exception:
         print("Start or goal not valid!")
