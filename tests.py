@@ -2,6 +2,18 @@ import unittest
 from sort import *
 import numpy
 import pprint
+import logging
+
+def logger(function):
+    """"""
+    logging.basicConfig(filename = "{}.log".format(function.__name__), level = logging.INFO)
+
+    def wrapper(*args, **kwargs):
+        """"""
+        logging.info()
+        return function(*args, **kwargs)
+    return wrapper
+
 
 class TestSortAlgorithms(unittest.TestCase):
     # self.array
@@ -46,5 +58,18 @@ class TestSortAlgorithms(unittest.TestCase):
         print("Ausgabe: {}".format(sorted_array))
 
 
+class TestUI(unittest.TestCase):
+    """ """
+
+    def setUp(self):
+        """ """
+        pass
+
+
+    def test_choose(self):
+        pass
+        
+
+   
 if __name__ == '__main__':
     unittest.main(verbosity = 2)
