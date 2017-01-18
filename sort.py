@@ -15,6 +15,7 @@ import sys
 import os
 import copy
 
+
 # constants
 HEADLINE = 79 * "-" + "\n{0:^79}\n".format("Sortieren") + 79 * "-"
 
