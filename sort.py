@@ -9,7 +9,6 @@ __email__ = "lilian_mendoza@hotmail.com, petersen@informatik.uni-frankfurt.de"
 # built-in modules
 import numpy as np
 import matplotlib.pyplot as plt
-from random import shuffle, randint
 import time
 import sys
 import os
@@ -234,12 +233,12 @@ def divide(array, left_index, right_index):
     return [array, pivot_index]
             
 
-def generate_random_numbers(num):
+def generate_random_numbers(num, low = 1, high = 20):
     """Generates an array of num random numbers."""
     
     # set seed so we all get the same "random" numbers
     np.random.seed(0)
-    return np.random.choice(range(1, 20), num, replace=True)
+    return np.random.choice(range(low, high), num, replace=True)
 
 
 def display(numbers, original_numbers):
@@ -265,10 +264,12 @@ def get_input():
         try:
             user_input = input("Ihre Wahl:\n>> ")
             if user_input == "":
-                print("\nBitte geben Sie mindestens eine Zahl ein.\n")
+                print("\nBitte geben Sie etwas ein.")
+                print("Durch ein KeyboardInterrupt beenden Sie das Programm.")
                 print("Neuer Versuch ...\n")
                 input()
                 continue
+            
             parsed_input = []
         
             for literal in user_input.split(" "):
@@ -277,14 +278,14 @@ def get_input():
         
         except ValueError:
             print("\nValueError!")
-            print("Bitte geben Sie Zahlen gemäß Beispiel ein.\n")
+            print("Folgen Sie bei der Eingabe bitte dem Beispiel.\n")
             print("Neuer Versuch ...\n")
             input()
             continue
         
         except KeyboardInterrupt:
             print("\nKeyboardInterrupt!")
-            print("Abbruch...\n")
+            print("Abbruch ...\n")
             sys.exit()
 
 
@@ -300,7 +301,13 @@ def choose_mode():
         try:
             user_input = input("Ihre Wahl:\n>> ")
 
-            if user_input == "0":
+            if user_input == "":
+                print("\nBitte geben Sie etwas ein.")
+                print("Durch ein KeyboardInterrupt beenden Sie das Programm.")
+                print("Neuer Versuch ...\n")
+                input()
+                continue
+            elif user_input == "0":
                 return 0
             elif user_input == "1":
                 return 1
@@ -329,6 +336,14 @@ def choose_algorithms(array):
         
         try:
             user_input = input("Ihre Wahl:\n>> ")
+            
+            if user_input == "":
+                print("\nBitte geben Sie etwas ein.")
+                print("Durch ein KeyboardInterrupt beenden Sie das Programm.")
+                print("Neuer Versuch ...\n")
+                input()
+                continue
+
             parsed_input = set(user_input.split(" "))
 
             if parsed_input.issubset(set([i for i in "0123"])) == True:
@@ -341,7 +356,7 @@ def choose_algorithms(array):
                 
         except KeyboardInterrupt:
                 print("\nKeyboardInterrupt!")
-                print("Abbruch...\n")
+                print("Abbruch ...\n")
                 sys.exit()
 
 
