@@ -42,9 +42,9 @@ INFO_ALGORITHMS = "\nBitte geben Sie eine durch genau ein Leerzeichen " + \
 CLEAR = "cls" if os.name =="nt" else "clear"
 
 
+def info_on_function_call(function, arguments):
+    """Displays infos on called functions to help check the results."""
 
-def info_on_recursive_function_call(function, arguments):
-    """Presents infos for output on calls of quick_sort."""
     print("\n{0:-^79}".format(" " + function.__name__.upper() + " "))
     print("Eingabe:\n{}\n".format(*arguments))
     
@@ -56,34 +56,12 @@ def info_on_recursive_function_call(function, arguments):
     print("Laufzeit: {0:.5f} Sekunden\n".format(delta))
     
     result_np = np.sort(arguments[0])
+    # result_np = np.sort(*arguments)
     print("Ausgabe von np.sort:\n{}\n".format(result_np))
     print("Resultat mit np.sort identisch? {}\n".format("Ja" if \
-                                np.array_equal(result, result_np) else "Nein"))
-
-def info_on_function_call(function):
-    """Works as a decorator for bubble_sort and insertion_sort."""
-    
-    def wrapper(*args, **kwargs):
-        """Presents infos for output on calls of function."""
-        print("\n{0:-^79}".format(" " + function.__name__.upper() + " "))
-        print("Eingabe:\n{}\n".format(*args))
-        
-        begin = time.time()
-        result = function(*args, **kwargs)
-        end = time.time()
-        delta = end - begin
-        print("Ausgabe:\n{}\n".format(result))
-        print("Laufzeit: {0:.5f} Sekunden\n".format(delta))
-        
-        result_np = np.sort(*args)
-        print("Ausgabe von np.sort:\n{}\n".format(result_np))
-        print("Resultat mit np.sort identisch? {}\n".format("Ja" if \
-                                np.array_equal(result, result_np) else "Nein"))
-
-    return wrapper
+                            np.array_equal(result, result_np) else "Nein"))
 
 
-@info_on_function_call
 def bubble_sort(array):
     """Implements the bubblesort algorithm."""
     
@@ -94,6 +72,7 @@ def bubble_sort(array):
     array = np.copy(array)
     num = len(array) - 1
     
+    # successive swapping of neighboring elements
     for k in range(num):
         for i in range(num):
             if array[i] > array[i + 1]:
@@ -122,7 +101,6 @@ def bubble_sort_with_display(array):
     return array
 
 
-@info_on_function_call
 def insertion_sort(array):
     """Implements the insertionsort algorithm."""
     
@@ -387,13 +365,7 @@ def main():
     for index in choice_algorithms:
         print("\nWeiter mit <ENTER>\n")
         input()
-        # special case for quicksort, since decorator doesn't work as desired
-        # with recursive function calls
-        if index == 2:
-            info_on_recursive_function_call(ALGORITHMS[index], \
-                                                             arguments[index])
-        else:
-            ALGORITHMS[index](*arguments[index])
+        info_on_function_call(ALGORITHMS[index], arguments[index])
         
     
 
