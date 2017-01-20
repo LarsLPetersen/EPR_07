@@ -1,0 +1,223 @@
+\documentclass[a4paper]{article}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Some common includes. Add additional includes you need.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\RequirePackage{ngerman}
+\RequirePackage[utf8]{inputenc}
+\RequirePackage[T1]{fontenc}
+\RequirePackage[margin=23mm,bottom=30mm]{geometry}
+\RequirePackage{graphicx}
+\RequirePackage{amsmath,amsfonts,amssymb,amsthm}
+\RequirePackage{hyperref}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Defines for mathematical notation. Add additional defines as needed.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\def\O{\mathcal{O}}
+\def\sort{\mathrm{sort}}
+\def\scan{\mathrm{scan}}
+\def\dist{\mathrm{dist}}
+
+\setlength{\parindent}{0cm}
+\renewcommand{\refname}{Quellen}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Definition of the assignment header
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\input{/Users/larspetersen/JWGU/Prg/header.tex}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% Set option "german" or "english", depending on what language the
+% default texts should be in.
+\ExecuteOptions{german}
+\ProcessOptions
+
+% Enter the lecture name and semester
+\lecture{Einf\"uhrung in die Programmierung}
+\semester{Winter 2016/2017}
+
+% Enter your data: Name, Matrikelnummer (student ID number) and group
+\student{Lilian Mendoza de Sudan, Lars Petersen}{5625448, 6290157}{11}
+% Tutorin: sabrinasafre@gmail.com
+
+% Which assignment is this?
+\assignment{7}
+
+% The environment "exercise" takes one parameter (the exercise number). 
+% This way you can skip exercises if you like. Example:
+% 
+% \assignment{3}
+% \begin{exercise}{8}
+% ...
+% \end{exercise}
+% 
+% The solution to exercise 3.8 (3rd assignment, 8th exercise) goes where 
+% the dots are.
+
+
+\begin{document}
+
+
+
+\begin{exercise}{1}
+
+Dokumentation der Laufzeit in Sekunden f\"ur die Sortierung eines Arrays mit 500 Zahlen $-$ erzeugt \"uber
+die Methode \texttt{generate\_random\_numbers}.
+
+\begin{center}
+	\begin{tabular}{| c | c | c |}
+		\hline
+		Bubblesort & Insertionsort & Quicksort\\ \hline \hline
+		0.12563 & 0.03512 & 0.00442\\ \hline
+	\end{tabular}
+\end{center}
+
+
+Dokumentation der UI-Testf\"alle f\"ur die Sortierung:
+
+\begin{center}	
+	\begin{tabular}{| p{2.5cm} | p{3.2cm} | p{9cm} |}
+		\hline
+		Funktionalit\"at & Eingabe & Verhalten des Programms\\ \hline \hline
+		
+		\textbf{Wahl zur Eingabe der Liste} & 
+		& In der Konsole wird eine Benutzereingabe angezeigt, in der der Benutzer seine Wahl
+		angeben kann (0 oder 1). \\ \hline
+		
+		Wahl zur Eingabe der Liste & $\emptyset$
+		& Nutzer erh\"alt den Hinweis, dass seine Eingabe leer war und wird zu einer neuen Eingabe
+		aufgefordert. Zudem wird ihm mitgeteilt, dass er durch einen KeyboardInterrupt das Programm
+		beenden kann. \\ \hline
+		
+		Wahl zur Eingabe der Liste & Literal enth\"alt Element $\notin \{0, 1\}$ \newline Bsp. \texttt{a}
+		& Nutzer erh\"alt den Hinweis, dass seine Eingabe nicht konform war und wird zu einer
+		neuen Eingabe aufgefordert.\\ \hline
+		
+		Wahl zur Eingabe der Liste & 0
+		& Der Computer erzeugt ein Array mit 200 Eintr\"agen im Bereich [1 ... 20]. Dieses wird dem
+		Nutzer angezeigt, und er wird zur Eingabe der gew\"unschten Algorithmen aufgefordert.\\ \hline
+		
+		Wahl zur Eingabe der Liste & 1
+		& Der Nutzer wird zur Eingabe einer Liste zu sortierender Zahlen aufgefordert.\\ \hline
+		
+		Wahl zur Eingabe der Liste & Keyboard Interrupt
+		& Das Programm wird mit einer Auskunft zum KeyboardInterrupt beendet.\\ \hline
+		
+		\textbf{Eingabe der zu sortierenden Liste} & 
+		& In der Konsole wird eine Benutzereingabe mit Beispiel angezeigt, in der der Benutzer
+		seine zu sortierende Liste eingeben kann. \\ \hline
+		
+		Eingabe der zu sortierenden Liste & $\emptyset$
+		& Nutzer erh\"alt den Hinweis, dass seine Eingabe leer war und wird zu einer neuen Eingabe
+		aufgefordert. Zudem wird ihm mitgeteilt, dass er durch einen KeyboardInterrupt das Programm
+		beenden kann. \\ \hline
+		
+		Eingabe der zu sortierenden Liste & Literal enth\"alt Elemente die nicht in float umgewandelt
+		werden k\"onnen
+		& Nutzer erh\"alt den Hinweis, dass seine Eingabe nicht konform war und wird zu einer
+		neuen Eingabe aufgefordert (ValueError).\\ \hline
+		
+		Eingabe der zu sortierenden Liste & \texttt{-1\_+1\_999.0}
+		& Die Eingabe wird in ein Array umgewandelt. Der Nutzer wird danach zur Eingabe der
+		anzuwendenden Algorithmen aufgefordert.\\ \hline
+		
+		Eingabe der zu sortierenden Liste & \texttt{0\_\_1}
+		& Aufgrund der \"ubersch\"ussigen Leerzeichen erh\"alt der Nutzer den Hinweis, dass
+		seine Eingabe nicht konform war (ValueError). Er wird zu einer neuen Eingabe
+		aufgefordert.\\ \hline
+		
+		Eingabe der zu sortierenden Liste & Keyboard Interrupt
+		& Das Programm wird mit einer Auskunft zum KeyboardInterrupt beendet.\\ \hline
+	\end{tabular}
+	
+	
+	\begin{tabular}{| p{2.5cm} | p{3.2cm} | p{9cm} |}
+		\hline
+		\textbf{Eingabe der anzuwendenden Algorithmen} &
+		& In der Konsole wird eine Benutzereingabe mit Beispiel angezeigt, in der der Benutzer
+		seine zu Auswahl an anzuwendenden Algorithmen eingeben kann.\\ \hline
+		
+		Eingabe der anzuwendenden Algorithmen & $\emptyset$ &
+		Nutzer erh\"alt den Hinweis, dass seine Eingabe leer war und wird zu einer neuen Eingabe
+		aufgefordert. Zudem wird ihm mitgeteilt, dass er durch einen KeyboardInterrupt das Programm
+		beenden kann. \\ \hline
+		
+		Eingabe der anzuwendenden Algorithmen & \texttt{0\_1\_2\_3} &
+		Die Eingabe ist korrekt. Der Nutzer wird aufgefordert, mit <Enter> die einzelnen Algorithmen
+		nacheinander ablaufen zu lassen.\\ \hline
+		
+		Eingabe der anzuwendenden Algorithmen & \texttt{0\_\_1} &
+		Aufgrund der \"ubersch\"ussigen Leerzeichen erh\"alt der Nutzer den Hinweis, dass
+		seine Eingabe nicht konform war. Er wird zu einer neuen Eingabe aufgefordert.\\ \hline
+		
+		Eingabe der anzuwendenden Algorithmen & Literal enth\"alt Element $\notin \{0, 1, 2, 3\}$
+		\newline Bsp. \texttt{0\_;} &
+		Nutzer erh\"alt den Hinweis, dass seine Eingabe leer war und wird zu einer neuen Eingabe
+		aufgefordert. \\ \hline
+		
+		Eingabe der anzuwendenden Algorithmen & \texttt{0\_0} &
+		Die Eingabe ist korrekt (Mehrfachnennung ist m\"oglich, f\"uhrt aber nicht dazu, dass der
+		entsprechende Algorithmus mehrfach ausgef\"uhrt wird). Der Nutzer wird aufgefordert, mit
+		<Enter> die einzelnen Algorithmen nacheinander ablaufen zu lassen. Bubblesort wird nur
+		einmal ausgef\"uhrt. \\ \hline
+		
+		Eingabe der anzuwendenden Algorithmen & Keyboard Interrupt
+		& Das Programm wird mit einer Auskunft zum KeyboardInterrupt beendet.\\ \hline
+		
+		\textbf{Anzeige der Ergebnisse} & korrekte Eingabe bei Algorithmenauswahl
+		& Die jeweiligen Algorithmen werden durchgef\"uhrt und deren Ergebnisse in der
+		Konsole ausgegeben. \\ \hline
+		
+		Anzeige der Ergebnisse & korrekte Eingabe bei Algorithmenauswahl: \newline \texttt{0}
+		& Bubblesort wird durchgef\"uhrt. Das eingegebene Array wird angezeigt. Das sortierte
+		Array wird ebenfalls angezeigt. Die Laufzeit wird ausgegeben. Das sortierte Ergebnis von
+		\texttt{np.sort} wird angezeigt. Es gibt einen Hinweis, ob die beiden sortierten Arrays
+		\"ubereinstimmen. \\ \hline
+		
+		Anzeige der Ergebnisse & korrekte Eingabe bei Algorithmenauswahl: \newline \texttt{1}
+		& Insertionsort wird durchgef\"uhrt. Das eingegebene Array wird angezeigt. Das sortierte
+		Array wird ebenfalls angezeigt. Die Laufzeit wird ausgegeben. Das sortierte Ergebnis von
+		\texttt{np.sort} wird angezeigt. Es gibt einen Hinweis, ob die beiden sortierten Arrays
+		\"ubereinstimmen. \\ \hline
+		
+		Anzeige der Ergebnisse & korrekte Eingabe bei Algorithmenauswahl: \newline \texttt{2}
+		& Quicksort wird durchgef\"uhrt. Das eingegebene Array wird angezeigt. Das sortierte
+		Array wird ebenfalls angezeigt. Die Laufzeit wird ausgegeben. Das sortierte Ergebnis von
+		\texttt{np.sort} wird angezeigt. Es gibt einen Hinweis, ob die beiden sortierten Arrays
+		\"ubereinstimmen. \\ \hline
+		
+		Anzeige der Ergebnisse & korrekte Eingabe bei Algorithmenauswahl: \newline \texttt{3}
+		& Bubblesort wird f\"ur zehn zuf\"allig gew\"ahlten Zahlen durchgef\"uhrt. Das eingegebene
+		Array wird in der Konsole angezeigt. Das sortierte Array wird ebenfalls dort angezeigt. Die
+		Laufzeit wird ausgegeben. Das sortierte Ergebnis von \texttt{np.sort} wird angezeigt.
+		Es gibt einen Hinweis, ob die beiden sortierten Arrays \"ubereinstimmen.
+		Das Sortierverfahren wird zudem durch wandernde Balken in einem Diagramm
+		visualisiert. \\ \hline	
+		\end{tabular}
+	\end{center}
+
+\newpage
+
+	Screenshots von Autrufen von \texttt{tests.py} zum Testen der Sortieralgorithmen:
+
+	\begin{center}
+		\includegraphics[scale=.6]{Test_Screenshot_01.png}
+	\end{center}
+	\vspace*{1ex}
+	\begin{center}
+		\includegraphics[scale=.6]{Test_Screenshot_01.png}
+	\end{center}
+
+\end{exercise}
+
+
+%\begin{thebibliography}{99}
+%\bibitem{Test}
+%Hallo
+%\end{thebibliography}
+
+%\begin{center}
+%\includegraphics[width=6cm,angle=270]{chart.eps}
+%\end{center}
+
+\end{document}
