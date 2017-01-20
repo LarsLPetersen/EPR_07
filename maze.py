@@ -1,5 +1,5 @@
 """
-Fle for EPR exercise 10.2.
+Creates the path from a starting point to a goal point in a given maze.
 """
 
 __author__ = "5625448: Lilian Mendoza de Sudan, 6290157: Lars Petersen"
@@ -79,7 +79,9 @@ def get_reachable_neighbors(neighbors_list):
     """Gets only the reachable neighbors to a node"""
 
     reachables = set()
-    
+
+    # checks if the neighbor of a node is not a wall, and inserts it in
+    # the viable neighbors list
     for neighbor in neighbors_list:
         if maze[int(neighbor[1])][int(neighbor[0])] == 1:
             reachables.add(
@@ -90,9 +92,7 @@ def get_reachable_neighbors(neighbors_list):
 
 
 def create_graph(maze, node_list):
-    """
-    compute the graph representation of the map
-    """
+    """Compute the graph representation of the map."""
     
     graph = {}
     
@@ -103,9 +103,7 @@ def create_graph(maze, node_list):
 
             
 def display(maze, start, goal, path):
-    """
-    draw the labyrinth, current position, goal and the shortest path
-    """
+    """Draw the labyrinth, current position, goal and the shortest path"""
     
     fig = plt.figure(0)
     fig.clf()
@@ -119,7 +117,7 @@ def display(maze, start, goal, path):
     ax.add_patch(Circle((start[0], start[2]), .3,color='yellow', alpha=1))
 
     # displays evry step of the path with a green circle
-    # only if the path exists
+    # (only if the path exists)
 
     if path:        
         for node in path[1:-1]:
@@ -180,7 +178,7 @@ def depth_search_all(graph, top_level, goal, path=[]):
             # repeat the search for every node of the under level
             under_level = depth_search_all(graph, node, goal, path)
 
-            # return if the node has no branches to expand
+            # return if the node has no more branches to expand
             if under_level:
                 return under_level
     return None
@@ -264,14 +262,14 @@ def main():
             print("\nShortest path(s): {}".format(len(shortest_path)),
                   *shortest_path, sep = "\n", end = "\n")
 
-        else:
-            print("No shortest: There are no possible paths")
+        else: pass
+
 
         
     #### Aufgabe 6.2 e) Display Funktion
 
         # Display the maze and the shortest path
-        # Modified version of display function was used (from line 105)
+        # Modified version of display function was used (from line 161)
 
         if path_list:
             
@@ -282,6 +280,7 @@ def main():
             display(maze, start, goal, shortest)
 
         else:
+            # if there is no solution (no path), display only start and goal
             display(maze, start, goal, [])
 
 
