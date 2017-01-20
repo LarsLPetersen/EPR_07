@@ -2,7 +2,7 @@
 
 __author__ = "5625448: Lilian Mendoza de Sudan, 6290157: Lars Petersen"
 __copyright__ = "Goethe Universitaet 2016"
-__credits__ = "" 
+__credits__ = "None" 
 __email__ = "lilian_mendoza@hotmail.com, petersen@informatik.uni-frankfurt.de"
 
 
@@ -39,12 +39,13 @@ INFO_ALGORITHMS = "\nBitte geben Sie eine durch genau ein Leerzeichen " + \
 
 
 # (semi) constants
-CLEAR = "cls" if os.name =="nt" else "clear"
+CLEAR = "cls" if os.name == "nt" else "clear"
 
 
 
 def info_on_recursive_function_call(function, arguments):
     """Presents infos for output on calls of quick_sort."""
+    
     print("\n{0:-^79}".format(" " + function.__name__.upper() + " "))
     print("Eingabe:\n{}\n".format(*arguments))
     
@@ -65,6 +66,7 @@ def info_on_function_call(function):
     
     def wrapper(*args, **kwargs):
         """Presents infos for output on calls of function."""
+        
         print("\n{0:-^79}".format(" " + function.__name__.upper() + " "))
         print("Eingabe:\n{}\n".format(*args))
         
@@ -243,6 +245,7 @@ def generate_random_numbers(num, low = 1, high = 20):
 
 def display(numbers, original_numbers):
     """Displays numbers as vertical boxes of height equal to number."""
+    
     fig = plt.figure(0)
     plt.ion()
     plt.clf()
@@ -291,6 +294,7 @@ def get_input():
 
 def choose_mode():
     """Prompts a user dialog to choose between random and custom input."""
+    
     is_correct_input = False
     
     while not is_correct_input:
@@ -325,6 +329,7 @@ def choose_mode():
 
 def choose_algorithms(array):
     """Prompts a user dialog to choose which algorithms to use for sorting."""
+    
     is_correct_input = False
     
     while not is_correct_input:
