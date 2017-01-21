@@ -40,35 +40,77 @@ class TestSortAlgorithms(unittest.TestCase):
     
     def setUp(self):
         """Initializes the array to be sorted."""
+        # numpy.random.seed(0)
         self.num = numpy.random.choice(range(1, 51), 1)
+        self.singleton = self.num
+        self.sorted_singleton = numpy.sort(self.singleton)
+        self.equalton = numpy.array([self.singleton[0] for i in range(5)])
+        self.sorted_equalton = numpy.sort(self.equalton)
         self.array = numpy.random.choice(range(-50, 51), self.num)
         self.sorted_array = numpy.sort(self.array)
         
+    
     def test_bubble_sort(self):
         """Tests the implementation of bubblesort against np.sort."""
+        singleton = numpy.copy(self.singleton)
+        sorted_singleton = bubble_sort(singleton)
+        print("\nEingabe: {}".format(self.singleton))
+        print("Ausgabe: {}".format(sorted_singleton))
+        self.assertEqual(list(sorted_singleton), list(self.sorted_singleton))
+        
+        equalton = numpy.copy(self.equalton)
+        sorted_equalton = bubble_sort(equalton)
+        print("\nEingabe: {}".format(self.equalton))
+        print("Ausgabe: {}".format(sorted_equalton))
+        self.assertEqual(list(sorted_equalton), list(self.sorted_equalton))
+
         array = numpy.copy(self.array)
         sorted_array = bubble_sort(array)
+        print("\nEingabe: {}".format(self.array))
+        print("Ausgabe: {}".format(sorted_array))
         self.assertEqual(list(sorted_array), list(self.sorted_array))
-        print("\nEingabe:\n{}".format(self.array))
-        print("Ausgabe:\n{}".format(sorted_array))
 
     def test_insertion_sort(self):
-        """Tests the implementation of insertionsort against np.sort."""
+        """Tests the implementation of insertionsort against np.sort."""      
+        singleton = numpy.copy(self.singleton)
+        sorted_singleton = bubble_sort(singleton)
+        print("\nEingabe: {}".format(self.singleton))
+        print("Ausgabe: {}".format(sorted_singleton))
+        self.assertEqual(list(sorted_singleton), list(self.sorted_singleton))
+        
+        equalton = numpy.copy(self.equalton)
+        sorted_equalton = bubble_sort(equalton)
+        print("\nEingabe: {}".format(self.equalton))
+        print("Ausgabe: {}".format(sorted_equalton))
+        self.assertEqual(list(sorted_equalton), list(self.sorted_equalton))
+
         array = numpy.copy(self.array)
         sorted_array = insertion_sort(array)
+        print("\nEingabe: {}".format(self.array))
+        print("Ausgabe: {}".format(sorted_array))
         self.assertEqual(list(sorted_array), list(self.sorted_array))
-        print("\nEingabe:\n{}".format(self.array))
-        print("Ausgabe:\n{}".format(sorted_array))
-
+        
     def test_quick_sort(self):
         """Tests the implementation of quicksort against np.sort."""
+        singleton = numpy.copy(self.singleton)
+        sorted_singleton = bubble_sort(singleton)
+        print("\nEingabe: {}".format(self.singleton))
+        print("Ausgabe: {}".format(sorted_singleton))
+        self.assertEqual(list(sorted_singleton), list(self.sorted_singleton))
+        
+        equalton = numpy.copy(self.equalton)
+        sorted_equalton = bubble_sort(equalton)
+        print("\nEingabe: {}".format(self.equalton))
+        print("Ausgabe: {}".format(sorted_equalton))
+        self.assertEqual(list(sorted_equalton), list(self.sorted_equalton))
+        
         array = numpy.copy(self.array)
         sorted_array = insertion_sort(array)
+        print("\nEingabe: {}".format(self.array))
+        print("Ausgabe: {}".format(sorted_array))
         self.assertEqual(list(sorted_array), list(self.sorted_array))
-        print("\nEingabe:\n{}".format(self.array))
-        print("Ausgabe:\n{}".format(sorted_array))
+        
 
-   
 if __name__ == '__main__':
     unittest.main(verbosity = 2)
     # run_time_eval_bubblesort = RuntimeEvaluation(500, bubble_sort)
