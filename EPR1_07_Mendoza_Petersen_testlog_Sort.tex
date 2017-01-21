@@ -61,18 +61,6 @@
 
 \begin{exercise}{1}
 
-Dokumentation der Laufzeit in Sekunden f\"ur die Sortierung eines Arrays mit 500 Zahlen $-$ erzeugt \"uber
-die Methode \texttt{generate\_random\_numbers}.
-
-\begin{center}
-	\begin{tabular}{| c | c | c |}
-		\hline
-		Bubblesort & Insertionsort & Quicksort\\ \hline \hline
-		0.12563 & 0.03512 & 0.00442\\ \hline
-	\end{tabular}
-\end{center}
-
-
 Dokumentation der UI-Testf\"alle f\"ur die Sortierung:
 
 \begin{center}	
@@ -85,17 +73,16 @@ Dokumentation der UI-Testf\"alle f\"ur die Sortierung:
 		angeben kann (0 oder 1). \\ \hline
 		
 		Wahl zur Eingabe der Liste & $\emptyset$
-		& Nutzer erh\"alt den Hinweis, dass seine Eingabe leer war und wird zu einer neuen Eingabe
-		aufgefordert. Zudem wird ihm mitgeteilt, dass er durch einen KeyboardInterrupt das Programm
-		beenden kann. \\ \hline
+		& Nutzer erh\"alt Hinweis, dass er etwas eingeben muss. Er wird zu einer neuen Eingabe
+		aufgefordert. Hinweis: Programm wird durch KeyboardInterrupt das Programm beendet. \\ \hline
 		
 		Wahl zur Eingabe der Liste & Literal enth\"alt Element $\notin \{0, 1\}$ \newline Bsp. \texttt{a}
 		& Nutzer erh\"alt den Hinweis, dass seine Eingabe nicht konform war und wird zu einer
 		neuen Eingabe aufgefordert.\\ \hline
 		
 		Wahl zur Eingabe der Liste & 0
-		& Der Computer erzeugt ein Array mit 200 Eintr\"agen im Bereich [1 ... 20]. Dieses wird dem
-		Nutzer angezeigt, und er wird zur Eingabe der gew\"unschten Algorithmen aufgefordert.\\ \hline
+		& Array mit 200 Eintr\"agen im Bereich [1 ... 20] wird erzeugt. Dieses wird angezeigt.
+		Nutzer wird zur Eingabe der Algorithmen aufgefordert.\\ \hline
 		
 		Wahl zur Eingabe der Liste & 1
 		& Der Nutzer wird zur Eingabe einer Liste zu sortierender Zahlen aufgefordert.\\ \hline
@@ -120,6 +107,18 @@ Dokumentation der UI-Testf\"alle f\"ur die Sortierung:
 		Eingabe der zu sortierenden Liste & \texttt{-1\_+1\_999.0}
 		& Die Eingabe wird in ein Array umgewandelt. Der Nutzer wird danach zur Eingabe der
 		anzuwendenden Algorithmen aufgefordert.\\ \hline
+		
+		Eingabe der zu sortierenden Liste & \texttt{4\_4\_4\_4}
+		& Eingabe wird in ein Array umgewandelt. Der Nutzer wird zur Angabe der
+		Algorithmen aufgefordert. Arrays mit mehrfach gleichen Eintr\"agen werden sortiert. \\ \hline
+		
+		Eingabe der zu sortierenden Liste & \texttt{4}
+		& Eingabe wird in ein Array umgewandelt. Der Nutzer wird danach zur Angabe der
+		Algorithmen aufgefordert. Arrays mit nur einem Eintrag werden sortiert. \\ \hline
+		
+		Eingabe der zu sortierenden Liste & \texttt{-1\_+1\_999.0}
+		& Die Eingabe wird in ein Array umgewandelt. Der Nutzer wird danach zur Angabe der
+		Algorithmen aufgefordert.\\ \hline
 		
 		Eingabe der zu sortierenden Liste & \texttt{0\_\_1}
 		& Aufgrund der \"ubersch\"ussigen Leerzeichen erh\"alt der Nutzer den Hinweis, dass
@@ -207,6 +206,21 @@ Dokumentation der UI-Testf\"alle f\"ur die Sortierung:
 	\begin{center}
 		\includegraphics[scale=.6]{Test_Screenshot_01.png}
 	\end{center}
+
+\newpage
+
+Dokumentation der Laufzeit in Sekunden f\"ur die Sortierung eines Arrays mit 500 Zahlen $-$ erzeugt \"uber
+die Methode \texttt{generate\_random\_numbers}.
+
+\begin{center}
+	\begin{tabular}{| c | c | c |}
+		\hline
+		Bubblesort & Insertionsort & Quicksort\\ \hline \hline
+		0.12563 & 0.03512 & 0.00442\\ \hline
+	\end{tabular}
+\end{center}
+
+
 
 \end{exercise}
 
